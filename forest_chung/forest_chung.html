@@ -60,6 +60,7 @@
     <br />
 	</div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src='https://code.responsivevoice.org/responsivevoice.js'></script>
 <script type="text/javascript" src="jscompile_chung.js"></script>
 <script type="text/javascript" src="mytemplates.js"></script>
 <script type="text/javascript" src="mypatterns.js"></script>
@@ -4733,7 +4734,7 @@ var tcollidebarbare=0,tcollidebarbare2=0;
 
 	setMatrixUniforms();
     gl.uniform4f(shaderProgram.colorUniform, 0,0,0,2/255.0);
-    gl.drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
 		mvPopMatrix();
 	gl.disable(gl.BLEND);
   
@@ -4762,12 +4763,12 @@ function drawsol(){
         //gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, solVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
         //setMatrixUniforms();
-       // gl.drawArrays(gl.TRIANGLE_STRIP, 0, solVertexPositionBuffer.numItems);
+       // gl_drawArrays(gl.TRIANGLE_STRIP, 0, solVertexPositionBuffer.numItems);
        
         gl.disable(gl.CULL_FACE);
 	    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, solVertexIndexBuffer);
         setMatrixUniformssol();
-        gl.drawElements(gl.TRIANGLES, solVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+        gl_drawElements(gl.TRIANGLES, solVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
 
         mvPopMatrix();
 }
@@ -4799,7 +4800,7 @@ function drawskydome(){
     colorr=1.0*aux3;colorg=1.0*aux;colorb=1.0*aux2;colora=1.0;
 	//colorr=1;colorg=1;colorb=1;colora=0;
 	setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, skydomeVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, skydomeVertexPositionBuffer.numItems);
 
 		mvPopMatrix();
 	colorr=1;colorg=1;colorb=1;colora=1;
@@ -4860,7 +4861,7 @@ function drawcloud(){
     gl.vertexAttribPointer(cloudProgram.vertexPositionAttribute, cloudVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 	setcloudMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, 6*ncloud2);//cloudVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, 6*ncloud2);//cloudVertexPositionBuffer.numItems);
 
 		mvPopMatrix();
     gl.enable(gl.DEPTH_TEST);
@@ -4888,7 +4889,7 @@ function drawsun(){
     gl.vertexAttribPointer(cloudProgram.vertexPositionAttribute, sunVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 	setsunMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, sunVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, sunVertexPositionBuffer.numItems);
 
 	mvPopMatrix();
     gl.enable(gl.DEPTH_TEST);
@@ -4938,7 +4939,7 @@ function drawscreen(texture){
     gl.uniform1i(screenprogram.samplerUniform, 10);
     gl.bindBuffer(gl.ARRAY_BUFFER, screenVertexPositionBuffer);
     gl.vertexAttribPointer(screenprogram.vertexPositionAttribute, screenVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-    gl.drawArrays(gl.TRIANGLES, 0, screenVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, screenVertexPositionBuffer.numItems);
     gl.enable(gl.DEPTH_TEST);
 }
 var train=0,train1=0,train2=0,timerain1=0,timerain2=0;
@@ -5082,7 +5083,7 @@ gl.useProgram(shaderProgram);
 		if(tsea>0 && h<-0.01){colorb=0.5;colorg=0;}
 		if(tsea==0 && h<-0.5){colorb=0.5;colorg=0;}
 	    setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
+        gl_drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
       }
 	}
     mat4.identity(mvMatrix);
@@ -5114,7 +5115,7 @@ function drawcarre(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, boussVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 	setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
 }
 function drawcarre2D(){
 	//gl.bindBuffer(gl.ARRAY_BUFFER, boussVertexTextureCoordBuffer);
@@ -5124,7 +5125,7 @@ function drawcarre2D(){
     gl.vertexAttribPointer(program2d.vertexPositionAttribute, boussVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 	setMatrixUniforms2D();
-    gl.drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
 }
 function drawcarresky(){
 	gl.bindBuffer(gl.ARRAY_BUFFER, boussVertexTextureCoordBuffer);
@@ -5134,7 +5135,7 @@ function drawcarresky(){
     gl.vertexAttribPointer(skyProgram.vertexPositionAttribute, boussVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 	setskyMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, boussVertexPositionBuffer.numItems);
 }
 var o3radar=0,tviseur=0;
 function drawcockpit(){
@@ -5377,7 +5378,7 @@ function drawplane(){plane="c150";/*if(plane=="spitfire"){drawspitfire();return;
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, worldVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, worldVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, worldVertexPositionBuffer.numItems);
    }else{
     gl.bindBuffer(gl.ARRAY_BUFFER, world2VertexTextureCoordBuffer);
     gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, world2VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -5386,7 +5387,7 @@ function drawplane(){plane="c150";/*if(plane=="spitfire"){drawspitfire();return;
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, world2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
    }   
 	mvPopMatrix();
 	if(tourelle>=2 && tshadow==0){drawcockpit();}
@@ -5451,7 +5452,7 @@ function drawspitfire(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, spitfireVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, spitfireVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, spitfireVertexPositionBuffer.numItems);
 	}else{
     gl.bindBuffer(gl.ARRAY_BUFFER, spitfirecockpitVertexTextureCoordBuffer);
     gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, spitfirecockpitVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -5460,7 +5461,7 @@ function drawspitfire(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, spitfirecockpitVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, spitfirecockpitVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, spitfirecockpitVertexPositionBuffer.numItems);
 	}
    }else{
     gl.bindBuffer(gl.ARRAY_BUFFER, world2VertexTextureCoordBuffer);
@@ -5470,7 +5471,7 @@ function drawspitfire(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, world2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
    }   
 	mvPopMatrix();
 	if(tourelle>=2 && tshadow==0){drawcockpit();}
@@ -5536,7 +5537,7 @@ function drawzero(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, zeroVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, zeroVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, zeroVertexPositionBuffer.numItems);
 	}else{
     gl.bindBuffer(gl.ARRAY_BUFFER, zerocockpitVertexTextureCoordBuffer);
     gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, zerocockpitVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -5545,7 +5546,7 @@ function drawzero(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, zerocockpitVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, zerocockpitVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, zerocockpitVertexPositionBuffer.numItems);
 	}
    }else{
     gl.bindBuffer(gl.ARRAY_BUFFER, world2VertexTextureCoordBuffer);
@@ -5555,7 +5556,7 @@ function drawzero(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, world2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
    }   
 	mvPopMatrix();
 	if(tourelle>=2 && tshadow==0){drawcockpit();}
@@ -5621,7 +5622,7 @@ function drawcorsair(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, corsairVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, corsairVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, corsairVertexPositionBuffer.numItems);
 	}else{
     gl.bindBuffer(gl.ARRAY_BUFFER, corsaircockpitVertexTextureCoordBuffer);
     gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, corsaircockpitVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -5630,7 +5631,7 @@ function drawcorsair(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, corsaircockpitVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, corsaircockpitVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, corsaircockpitVertexPositionBuffer.numItems);
 	}
    }else{
     gl.bindBuffer(gl.ARRAY_BUFFER, world2VertexTextureCoordBuffer);
@@ -5640,7 +5641,7 @@ function drawcorsair(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, world2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
    }   
 	mvPopMatrix();
 	if(tourelle>=2 && tshadow==0){drawcockpit();}
@@ -5698,7 +5699,7 @@ function drawplane2(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, worldVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, worldVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, worldVertexPositionBuffer.numItems);
    }else{
     gl.bindBuffer(gl.ARRAY_BUFFER, world2VertexTextureCoordBuffer);
     gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, world2VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -5707,7 +5708,7 @@ function drawplane2(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, world2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     setMatrixUniforms();
-    gl.drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
    }   
 		
 		mvPopMatrix();
@@ -5764,7 +5765,7 @@ function drawplane3(){
     colorb=0.05;
     setMatrixUniforms(); 
 	colorb=1;
-    gl.drawArrays(gl.TRIANGLES, 0, worldVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, worldVertexPositionBuffer.numItems);
    }else{
     gl.bindBuffer(gl.ARRAY_BUFFER, world2VertexTextureCoordBuffer);
     gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, world2VertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -5773,7 +5774,7 @@ function drawplane3(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, world2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 	setMatrixUniforms();
-	gl.drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
+	gl_drawArrays(gl.TRIANGLES, 0, world2VertexPositionBuffer.numItems);
    }   
 		
 		mvPopMatrix();
@@ -5817,7 +5818,7 @@ function drawpiste(){
     gl.vertexAttribPointer(solProgram.vertexPositionAttribute, pisteVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniformspiste(); 
-    gl.drawArrays(gl.TRIANGLES, 0, pisteVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, pisteVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -5836,7 +5837,7 @@ function drawhorizon(){
     gl.vertexAttribPointer(solProgram.vertexPositionAttribute, horizonVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniformssea(); 
-    gl.drawArrays(gl.TRIANGLES, 0, horizonVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, horizonVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -5857,7 +5858,7 @@ function drawsea(){
     gl.vertexAttribPointer(solProgram.vertexPositionAttribute, seaVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniformssea(); 
-    gl.drawArrays(gl.TRIANGLES, 0, seaVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, seaVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -5891,7 +5892,7 @@ function drawwater(){
     gl.vertexAttribPointer(solProgram.vertexPositionAttribute, waterVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniformspiste(); 
-    gl.drawArrays(gl.TRIANGLES, 0, waterVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, waterVertexPositionBuffer.numItems);
 
 	mvPopMatrix();
 }
@@ -5957,7 +5958,7 @@ function drawship(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, shipVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, shipVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, shipVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 	}
@@ -6065,7 +6066,7 @@ function drawshipcarrier(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, shipcarrierVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, shipcarrierVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, shipcarrierVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 	}	
@@ -6190,7 +6191,7 @@ function drawsailship(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, sailshipVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, sailshipVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, sailshipVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 		}
@@ -6222,7 +6223,7 @@ function drawarm(){//11 -30
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, arm2VertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, arm2VertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, arm2VertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -6245,7 +6246,7 @@ function drawsword(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, swordVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, swordVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, swordVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -6269,7 +6270,7 @@ function drawaxe(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, axeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, axeVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, axeVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -6309,7 +6310,7 @@ function drawhorse(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horseVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, horseVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, horseVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -6343,7 +6344,7 @@ function drawhorsebody(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horsebodyVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, horsebodyVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, horsebodyVertexPositionBuffer.numItems);
         
 		mvPopMatrix();
 		mat4.translate(mvMatrix, [0,-0.284,0.837]);
@@ -6361,7 +6362,7 @@ function drawhorsebody(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horseVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, horseVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, horseVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -6456,7 +6457,7 @@ function drawhorselow(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horselowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, horselowVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, horselowVertexPositionBuffer.numItems);
 		mvPopMatrix();
         
 		drawskeletoncav();
@@ -6541,7 +6542,7 @@ if(tframe<to2skeleton+4000){
     
     colorr=1;colorg=1;colorb=1;colora=1;
 	setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, skeletoncavVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, skeletoncavVertexPositionBuffer.numItems);
     if(o1skeleton==0 && o2skeleton<=0.001){	
 		mat4.scale(mvMatrix,[-120,-120,136]);
         mat4.translate(mvMatrix, [0.63,0.13,0.30]);
@@ -6663,7 +6664,7 @@ function drawhorse2low(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horselowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, horselowVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, horselowVertexPositionBuffer.numItems);
 		mvPopMatrix();
         
 		drawbarbarecav();
@@ -6741,7 +6742,7 @@ if(tframe<to2barbare+4000){
     
     colorr=1;colorg=1;colorb=1;colora=1;
 	setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, barbarecavVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, barbarecavVertexPositionBuffer.numItems);
 	mvPopMatrix();
 }
 var tmovebarbare2=0,to1barbare2=0,o1barbare2=0;
@@ -6789,7 +6790,7 @@ if(tframe<to2barbare2+4000){
     
     colorr=1;colorg=1;colorb=1;colora=1;
 	setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, womanjeancavVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, womanjeancavVertexPositionBuffer.numItems);
 	mvPopMatrix();
 }
 var tmovebarbare3=0,to1barbare3=0,o1barbare3=0;
@@ -6837,7 +6838,7 @@ if(tframe<to2barbare3+4000){
     
     colorr=1;colorg=1;colorb=1;colora=1;
 	setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, womanjeancavVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, womanjeancavVertexPositionBuffer.numItems);
 	mvPopMatrix();
 }
 
@@ -6942,7 +6943,7 @@ function drawhorse3low(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horselowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, horselowVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, horselowVertexPositionBuffer.numItems);
 		mvPopMatrix();
         
 		if(twomanjeancav==0){drawwomanjeancav2();}
@@ -7040,7 +7041,7 @@ function drawbird(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, birdVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, birdVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, birdVertexPositionBuffer.numItems);
 		mvPopMatrix();
 }
 var tbird2=0,o2bird2=0,o1bird2=0,o3bird2=0,tmovebird2=1,tframebird2=0,vbird2=0;
@@ -7109,7 +7110,7 @@ function drawbird2(){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, birdVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, birdVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, birdVertexPositionBuffer.numItems);
 		mvPopMatrix();
 }
 var nroc=100,rocx=new Array(nroc),rocy=new Array(nroc),rocz=new Array(nroc);
@@ -7208,7 +7209,7 @@ for(var i=0;i<nroc;i++){
 		mat4.scale(mvMatrix,[sc,sc,sc]);
     
     gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
-    gl.drawArrays(gl.TRIANGLES, 0, rocVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, rocVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
     }
@@ -7244,7 +7245,7 @@ for(var i=0;i<ntree;i++){
 		mat4.scale(mvMatrix,[sc,sc,sc*0.0034/0.0039]);
     
     gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
-    gl.drawArrays(gl.TRIANGLES, 0, trunkVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, trunkVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
     }
@@ -7266,7 +7267,7 @@ function drawtower(){
     gl.vertexAttribPointer(solProgram.vertexPositionAttribute, towerVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniformspiste(); 
-    gl.drawArrays(gl.TRIANGLES, 0, towerVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, towerVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -7310,7 +7311,7 @@ function drawtown(){
     gl.vertexAttribPointer(solProgram.vertexPositionAttribute, townVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniformstown(); 
-    gl.drawArrays(gl.TRIANGLES, 0, townVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, townVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -7347,7 +7348,7 @@ if(rotavion(farmlowx-x,farmlowy-y,farmlowz-z,4)>0){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, farmlowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, farmlowVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, farmlowVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
  }
@@ -7398,7 +7399,7 @@ if(rotavion(castletowerx-x,castletowery-y,castletowerz-z,7)>0){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, castletowerVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, castletowerVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, castletowerVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
  }
@@ -7427,7 +7428,7 @@ if(rotavion(castlewallx-x,castlewally-y,castlewallz-z,7)>0){
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, castlewallVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniforms(); 
-    gl.drawArrays(gl.TRIANGLES, 0, castlewallVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, castlewallVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
  }
@@ -7458,7 +7459,7 @@ if(tmove==1){
     gl.vertexAttribPointer(treeProgram.vertexPositionAttribute, treeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
     setMatrixUniformstree(); 
-    gl.drawArrays(gl.TRIANGLES, 0, treeVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, treeVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -7477,7 +7478,7 @@ function drawgrass(){
     if(Math.random()<dtime*0.002){uwinddx=(Math.random()-0.5)*0.008;
 	                              uwinddy=(Math.random()-0.5)*0.008;}
 	setMatrixUniformsgrass(); 
-    gl.drawArrays(gl.TRIANGLES, 0, grassVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, grassVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -7496,7 +7497,7 @@ function drawflower(){
     //if(Math.random()<dtime*0.002){uwinddx=(Math.random()-0.5)*0.008;
 	//                              uwinddy=(Math.random()-0.5)*0.008;}
 	setMatrixUniformsgrass(); 
-    gl.drawArrays(gl.TRIANGLES, 0, flowerVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, flowerVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 }
@@ -7666,7 +7667,7 @@ function drawskeleton(){
     
 	if(skeletono1[i]==1 || (skeletonvie[i]>=0 && tskeletontexture>0)){setMatrixUniformsskeleton(1);
     }else{setMatrixUniformsskeleton(-1);}	
-    gl.drawArrays(gl.TRIANGLES, 0, carreVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, carreVertexPositionBuffer.numItems);
 		mvPopMatrix();	
 	};	
 }
@@ -7698,7 +7699,7 @@ function drawskeleton(){
     
 	if(skeletono1[i]==1){setMatrixUniformsskeleton(1);
     }else{setMatrixUniformsskeleton(-1);}	
-    gl.drawArrays(gl.TRIANGLES, 0, carreVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, carreVertexPositionBuffer.numItems);
 		mvPopMatrix();	
 	};	
 }*/
@@ -7736,7 +7737,7 @@ function drawpotion(){
     gl.vertexAttribPointer(treeProgram.vertexPositionAttribute, carreVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
 	setMatrixUniformsskeleton(1);	
-    gl.drawArrays(gl.TRIANGLES, 0, carreVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, carreVertexPositionBuffer.numItems);
 		mvPopMatrix();	
 }
 function drawstar(){
@@ -7755,7 +7756,7 @@ function drawstar(){
     colora=Math.abs(12-hour)/20;
 	setMatrixUniformsstar();
     colora=1;	
-    gl.drawArrays(gl.TRIANGLES, 0, starVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, starVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
     gl.enable(gl.DEPTH_TEST);
@@ -7779,7 +7780,7 @@ function drawtir(){
     
     setMatrixUniforms(); 
     gl.uniform4f(shaderProgram.colorUniform,0.7,0.57,0.57,0.0);
-    gl.drawArrays(gl.TRIANGLES, 0, tirVertexPositionBuffer.numItems);
+    gl_drawArrays(gl.TRIANGLES, 0, tirVertexPositionBuffer.numItems);
 		
 		mvPopMatrix();
 	gl.disable(gl.BLEND);
@@ -7903,6 +7904,7 @@ function drawsmoke(){
 		displaymsg();
 		if(waitkey==0){testkeys();}else{subwaitkey();}
 		tskip=0;
+		ndraw=0;ntri=0;
 		if(waitkey>=1){tskip=1;}
 		if(tinventory==1){tskip=1;gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		                  //drawrttshadow();
@@ -7932,7 +7934,12 @@ function drawsmoke(){
 		if(tchat==1){
 		   if(jmsg!=""){
 	          ctx.fillStyle="Yellow";
-              ctxtext(jmsg,1,1);}
+              ctxtext(jmsg,1,1);
+			  if(speakmsg!=jmsg){speakmsg=jmsg;
+			                     var k=jmsg.indexOf("> ");
+								 if(k>=0 && jmsg.indexOf("=>")<0){
+								    myspeak(jmsg.substr(0,k)+" "+jmsg.substr(k+2,80));};}
+			  }
            loop();}
 		tframe0=tframe;
 		tframe=timer();
@@ -8304,6 +8311,7 @@ if(tchat==0){
  if(tfoot==0){msg+="  v="+vv+"  prop="+pp;}
  if(test==1){msg+="  o1="+oo1+" o2="+oo2+" o3="+oo3;};
  msg+=" fps="+ff;
+ msg+=" draw="+ndraw+" tri="+ntri;
  if(Math.abs(tvie0-vie)>0.001){tvie0=vie;if(vie!=100){tvie=tframe;};}
  if(tframe<(tvie+5000)){msg+=" vie="+parseInt(vie);}
  if(ttimeout){msg+=" timeout";}
@@ -8331,6 +8339,7 @@ if(tchat==0){
 
 	  }
 	  var text=document.getElementById('intext0').value;
+	  if(text=="speak=>quit" || text=="speak=>exit"){text="";if(tchat==1){subchat();}}
 	  if(tfocus){document.getElementById('intext0').value="";}
 	  if(tfocus){document.getElementById('intext0').value=text;}
 	  if(tfocus){document.getElementById('intext0').focus();}}
@@ -9587,7 +9596,12 @@ speakaudio[i].addEventListener('ended',function(){
 		});
 tspeak[i]=0;
 }
-function myspeak(textspeak){
+function myspeak(msg){//mytextspeak=msg;
+var voicename="UK English Female";
+//var msg1=replaceall(msg," ","+");
+responsiveVoice.speak(msg,voicename);
+}
+function myspeak0(textspeak){
 if(tspeak[ispeak0]>0){
         speakaudio[ispeak0].pause();
         setTimeout("speakaudio["+ispeak0+"].src=null;",100);
@@ -9635,7 +9649,10 @@ if(true || radiosource==0 || tsea==0){
   myspeak(radiotxt);
 tradio=tframe;
 }
-var tchat=0,tchat0=0,tmouse=0;
+var tchat=0,tchat0=0,tmouse,speakmsg="";
+function ctxtextspeak(msg,i,j){
+ctxtext(msg,i,j);myspeak(msg);
+}
 function subchat(){
 resetkeys();if(timer()<tmouse+300){return;}
 tmouse=timer();
@@ -9654,7 +9671,7 @@ tchat+=1;if(tchat>1){tchat=0;};
 	 tchat0=1;
 	 ctxclear();
      ctx.fillStyle="Yellow";
-     ctxtext("hello, how are you ...",1,1);
+     ctxtextspeak("hello, how are you ...",1,1);
 	 //ctx.drawImage(faceimage,0,0,ctx.width,ctx.height);
 	 }}
 }
@@ -9664,6 +9681,13 @@ tchat+=1;if(tchat>1){tchat=0;};
   try{initparms();}catch(e){alert("error initparms()");}
   webGLStart();
   //setTimeout('alert("hello how are you$");',1000);
+var ntri=0,ndraw=0;
+function gl_drawArrays(glTRIANGLES, x0, numItems){
+ndraw+=1;ntri+=numItems/3;gl.drawArrays(glTRIANGLES, x0, numItems);
+}
+function gl_drawElements(glTRIANGLES, numItems, glUNSIGNED_SHORT, x0){
+ndraw+=1;ntri+=numItems/3;gl.drawElements(glTRIANGLES, numItems, glUNSIGNED_SHORT, x0);
+}
 </script>
 
 </body>
