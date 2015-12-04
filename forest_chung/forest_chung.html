@@ -60,22 +60,22 @@
     <br />
 	</div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/jscompile_chung.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/mytemplates.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/mypatterns.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/mywords.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/mywordspatt.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/mystarpatt.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/mystarpatt2.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/mystartemp.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/womanjean_obj.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/womanjeaneye_obj.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/womanjeanmouth_obj.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/womanjeanmoutho_obj.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/womanjeancavjpg.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/womanjeancav2jpg.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/myjsc3d.js"></script>
-<script type="text/javascript" src="https://sites.google.com/site/mywebglflightchung/forest_chung/chatbot_chung_js.js"></script>
+<script type="text/javascript" src="jscompile_chung.js"></script>
+<script type="text/javascript" src="mytemplates.js"></script>
+<script type="text/javascript" src="mypatterns.js"></script>
+<script type="text/javascript" src="mywords.js"></script>
+<script type="text/javascript" src="mywordspatt.js"></script>
+<script type="text/javascript" src="mystarpatt.js"></script>
+<script type="text/javascript" src="mystarpatt2.js"></script>
+<script type="text/javascript" src="mystartemp.js"></script>
+<script type="text/javascript" src="womanjean_obj.js"></script>
+<script type="text/javascript" src="womanjeaneye_obj.js"></script>
+<script type="text/javascript" src="womanjeanmouth_obj.js"></script>
+<script type="text/javascript" src="womanjeanmoutho_obj.js"></script>
+<script type="text/javascript" src="womanjeancavjpg.js"></script>
+<script type="text/javascript" src="womanjeancav2jpg.js"></script>
+<script type="text/javascript" src="myjsc3d.js"></script>
+<script type="text/javascript" src="chatbot_chung_js.js"></script>
 <script type="text/javascript" >
 //google.load("search", "1");
 //google.load("jquery", "1.4.2");
@@ -93,7 +93,7 @@ if (google.loader.ClientLocation) {
 var folder="http://sites.google.com/site/chungkn1400/forest_chung/";
 folder="https://b3d8783ddc02a86af1ce60266a06c20f1a961f99.googledrive.com/host/0B6GM9ay7ImZLOXpiUkx5bFhacXc/";
 folder="https://sites.google.com/site/mywebglflightchung/forest_chung/";
-//folder="";//set this to use local sound folder
+folder="";//set this to use local sound folder
 var tcompile=0;
 tcompile=1;//set this to compile
 var test=0;//if(folder==""){test=1;};
@@ -1203,6 +1203,7 @@ void main() {
 	//window.onbeforeunload=close;
     var tclose=0,timeoutkey=null,timeouttick=null;
 	function subquit(){
+	   savecookie();
 	   close();
 	   document.location.href="http://chung.blogvie.com/links/";
 	   //document.location.href="https://www.google.com/search?q=forest_chung&rct=j";
@@ -4585,7 +4586,7 @@ var tshadow=0,zsol=0,distshadow=0,sunzz=1000,sunco2=0,sunsi2=1,sunco1=0,sunsi1=1
 		 if(zv<zv1){zv=zv1;}
 		} 
 		if(tfoot==1){
-		   var dz=0;if(thorse==1){dz=o2horse*0.0143;}
+		   var dz=0;if(thorse==1){dz=o2horse*0.0149;}
 		   //mat4.lookAt([x,y,z+0.5],[x+cos1*cos2,y+sin1*cos2,z+sin2+0.5],[0,0,1],mvMatrix);
 		   //mat4.lookAt([x,y,z+0.7],[x+cos1*cos2,y+sin1*cos2,z+sin2+0.7],[0,0,1],mvMatrix);
 		   mat4.lookAt([x,y,z+0.7+dz],[xv,yv,zv+0.7+dz],[0,0,1],mvMatrix);
