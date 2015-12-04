@@ -96,7 +96,7 @@ folder="https://b3d8783ddc02a86af1ce60266a06c20f1a961f99.googledrive.com/host/0B
 folder="https://sites.google.com/site/mywebglflightchung/forest_chung/";
 folder="";//set this to use local sound folder
 var tcompile=0;
-tcompile=1;//set this to compile
+//tcompile=1;//set this to compile
 var test=0;//if(folder==""){test=1;};
 function submsg(text){
  document.getElementById("msg").value=text;
@@ -309,8 +309,12 @@ addjavascript("barbarecav2objtxt.js");
 addjavascript("womanjeancavobjtxt.js");
 addjavascript("womanjeancav2objtxt.js");
 //addjavascript("womanjeancav2jpg.js");
-setTimeout("msgloading();",20000);
 addjavascript("tree14jpg.js");
+addjavascript("horse00jpg.js");
+addjavascript("horse00objtxt.js");
+addjavascript("horse01objtxt.js");
+addjavascript("horse02objtxt.js");
+setTimeout("msgloading();",20000);
 </script>
 <script type="text" id="testaddmain">
  /*   function loadtexture0(texturename,texturesrc){//$$$
@@ -1602,7 +1606,7 @@ void main() {
 	var skeleton1Texture,skeleton1LTexture,skeleton1RTexture;
 	var skeleton2Texture,skeleton2LTexture,skeleton2RTexture;
 	var birdTexture,barbarecavTexture,womanjeancavTexture;
-	var womanjeancav2Texture;
+	var womanjeancav2Texture,horse00Texture;
 	var rttFramebuffer,rttTexture,renderbuffer;
 	var rtt2Framebuffer,rtt2Texture,rtt2renderbuffer;
 	var faceimage;
@@ -1673,6 +1677,7 @@ void main() {
 		gldeleteTexture(womanjeancavTexture);
 		gldeleteTexture(womanjeancav2Texture);
 		gldeleteTexture(tree2Texture);
+		gldeleteTexture(horse00Texture);
     }
 
     /*function loadtexture(texturename,texturesrc){//$$$
@@ -2254,6 +2259,13 @@ function initTexture2(){
         }
         womanjeancav2Texture.image.src = womanjeancav2jpg;
         
+        horse00Texture = gl.createTexture();
+        horse00Texture.image = new Image();
+        horse00Texture.image.onload = function () {
+            handleLoadedTexture(horse00Texture)
+        }
+        horse00Texture.image.src = horse00jpg;
+
 		}
 
     function drawrttshadow() {
@@ -4664,6 +4676,9 @@ var tshadow=0,zsol=0,distshadow=0,sunzz=1000,sunco2=0,sunsi2=1,sunco1=0,sunsi1=1
 		drawhorse3low();
 		drawbird();
 		drawbird2();
+		drawhorse001low();
+		drawhorse002low();
+		drawhorse003low();
 		//drawship();
 		//if(tsea>0){drawshipcarrier();drawsailships();}
         gl.useProgram(solProgram);
@@ -6975,6 +6990,268 @@ if(thorse==1 && tfoot==1){
 	 y+=cos1*0.1;}}
 }
 }
+function testhorse00(px,py,pz,r0){
+var r=r0;if(tcar==1){r*=0.28;}
+ if(Math.abs(px-horse001lowx)<r){
+  if(Math.abs(py-horse001lowy)<r){
+   if(Math.abs(pz-horse001lowz)<r){
+     soundhorse00();return 1;
+ }}}
+ if(Math.abs(px-horse002lowx)<r){
+  if(Math.abs(py-horse002lowy)<r){
+   if(Math.abs(pz-horse002lowz)<r){
+     soundhorse00();return 1;
+ }}}
+ if(Math.abs(px-horse003lowx)<r){
+  if(Math.abs(py-horse003lowy)<r){
+   if(Math.abs(pz-horse003lowz)<r){
+     soundhorse00();return 1;
+ }}}
+ return 0;
+}
+var thorse001low=0,o2horse001low=0,o1horse001low=0,o3horse001low=0,tmovehorse001low=1,tframehorse001low=0,vhorse001low=1;
+var horse001lowx=x+8,horse001lowy=y,horse001lowz=0,horse001lowo1=0,horse001lowo2=0;
+var horse001lowo10=0,horse001lowv=2,horse001lowco1=1,horse001lowsi1=0;
+function drawhorse001low(){
+   var distmax=65,test=0;
+   while(horse001lowx<(x-distmax)){horse001lowx+=1.99*distmax;test=1;}
+   while(horse001lowx>(x+distmax)){horse001lowx-=1.99*distmax;test=1;}
+   while(horse001lowy<(y-distmax)){horse001lowy+=1.99*distmax;test=1;}
+   while(horse001lowy>(y+distmax)){horse001lowy-=1.99*distmax;test=1;}
+   var co1=Math.cos(degtorad(horse001lowo1)),si1=Math.sin(degtorad(horse001lowo1));
+   horse001lowco1=co1;horse001lowsi1=si1;
+   var horse00x0=horse001lowx,horse00y0=horse001lowy,horse00z0=horse001lowz;
+   var h0=getterrainheight(horse001lowx,horse001lowy);
+   horse001lowx+=horse001lowv*co1*dtime*0.0012;
+   horse001lowy+=horse001lowv*si1*dtime*0.0012;
+   var h1=getterrainheight(horse001lowx,horse001lowy);
+   horse001lowz=h1;
+   //if(h0<-0.3){return;}
+   if(h0>-0.20 && h1<-0.30){//water
+    if(getterrainheight(horse001lowx+20*co1,horse001lowy+20*si1)<-0.30){
+                    horse001lowx=horse00x0;
+	                horse001lowy=horse00y0;
+					horse001lowz=horse00z0;  
+	                horse001lowo1+=20+Math.random()*40;
+			       }}
+   if(Math.random()<0.0001*dtime){
+        horse001lowo10+=(Math.random()-0.5)*100;}
+   var doo1=horse001lowo10-horse001lowo1;
+   while(horse001lowo1>180){horse001lowo1-=360;}
+   while(horse001lowo1<-180){horse001lowo1+=360;}
+   while(doo1>180){doo1-=360;}
+   while(doo1<-180){doo1+=360;}
+   if(doo1>8){horse001lowo1+=dtime*0.05;}
+   if(doo1<-8){horse001lowo1-=dtime*0.05;}   
+   tmovehorse001low=(1+vhorse001low*0.3);//-0.3*Math.cos((dx+dy)*0.1));
+   horse001lowv=1.8;
+   if(Math.abs(x-horse001lowx)>(distmap2)){return;}
+     if(Math.abs(y-horse001lowy)>(distmap2)){return;}
+   if(rotavion(horse001lowx-x,horse001lowy-y,horse001lowz-z,2)<=0){return;}
+	if(x2>0){
+       tmovehorse001low=(1+vhorse001low*0.15);//-0.3*Math.cos((dx+dy)*0.1+8*degtorad(o1)))/1.1;
+	   }
+	horse001lowo2=Math.atan(h1-h0)*radtodeg/2;
+	tframehorse001low+=dtime*(tmovehorse001low*0.6+0.3);
+    o2horse001low=0.8*Math.sin(tframehorse001low*0.0065)*tmovehorse001low;
+    o2horse001low+=0.22*(Math.sin(tframehorse001low*0.0016)-0.4);
+    var nvertices=horse00lowVertexPositionBuffer.numItems;
+	if(o2horse001low>0){   
+	 for(var i=0;i<nvertices*3;i++){
+	    horse00lowVertexPositions[i]=horse00lowidleVertexPositions[i]
+		    +o2horse001low*horse00lowrun1VertexPositions[i];}
+    }else{	
+	 for(var i=0;i<nvertices*3;i++){
+	    horse00lowVertexPositions[i]=horse00lowidleVertexPositions[i]
+		    -o2horse001low*horse00lowrun2VertexPositions[i];}
+    }
+	
+	gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D,  horse00Texture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
+		mvPushMatrix();
+		mat4.translate(mvMatrix, [horse001lowx,horse001lowy,horse001lowz+0.1]);
+		mat4.rotate(mvMatrix,degtorad(horse001lowo1+90), [0, 0, 1]);
+    	mat4.rotate(mvMatrix,degtorad(-horse001lowo2-2.5+5.5*o2horse001low), [1, 0, 0]);
+    	mat4.scale(mvMatrix,[0.0125,0.0125,0.0125]);
+    	//mat4.scale(mvMatrix,[0.0087,0.0087,0.0087]);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexTextureCoordBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, horse00lowVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, (horse00lowVertexPositions), gl.STATIC_DRAW);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horse00lowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    
+    setMatrixUniforms(); 
+    gl.drawArrays(gl.TRIANGLES, 0, horse00lowVertexPositionBuffer.numItems);
+
+	mvPopMatrix();
+}
+var thorse002low=0,o2horse002low=0,o1horse002low=0,o3horse002low=0,tmovehorse002low=1,tframehorse002low=0,vhorse002low=1;
+var horse002lowx=x+8,horse002lowy=y,horse002lowz=0,horse002lowo1=0,horse002lowo2=0;
+var horse002lowo10=0,horse002lowv=2,horse002lowco1=1,horse002lowsi1=0;
+function drawhorse002low(){
+   var dx=horse001lowx-horse002lowx;
+   var dy=horse001lowy-horse002lowy;
+   var dist=Math.sqrt(dx*dx+dy*dy);
+   if(dist>70 && (Math.abs(horse002lowx-x)>45 || Math.abs(horse002lowy-y)>45)){
+               horse002lowx=horse001lowx-50*dx/dist;
+               horse002lowy=horse001lowy-50*dy/dist;}
+   var co1=Math.cos(degtorad(horse002lowo1)),si1=Math.sin(degtorad(horse002lowo1));
+   horse002lowco1=co1;horse002lowsi1=si1;
+   var horse00x0=horse002lowx,horse00y0=horse002lowy,horse00z0=horse002lowz;
+   var h0=getterrainheight(horse002lowx,horse002lowy);
+   horse002lowx+=horse002lowv*co1*dtime*0.0012;
+   horse002lowy+=horse002lowv*si1*dtime*0.0012;
+   var h1=getterrainheight(horse002lowx,horse002lowy);
+   horse002lowz=h1;
+   /*if(h0<-0.3){return;}
+   if(h0>0.001 && h1<-0.001){horse002lowx=horse00x0;
+	                horse002lowy=horse00y0;
+					horse002lowz=horse00z0;  
+	                horse002lowo1+=20+Math.random()*40;
+			       }*/
+   if(Math.random()<0.0002*dtime){
+      horse002lowo10=diro1(dx,dy)+(Math.random()-0.5)*10;}
+   var doo1=horse002lowo10-horse002lowo1;
+   while(horse002lowo1>180){horse002lowo1-=360;}
+   while(horse002lowo1<-180){horse002lowo1+=360;}
+   while(doo1>180){doo1-=360;}
+   while(doo1<-180){doo1+=360;}
+   if(doo1>8){horse002lowo1+=dtime*0.05;}
+   if(doo1<-8){horse002lowo1-=dtime*0.05;}   
+   tmovehorse002low=(1+vhorse002low*0.3);//-0.3*Math.cos((dx+dy)*0.1));
+   if(dist>15){horse002lowv=2.25;}
+   if(dist<5){horse002lowv=1.8;}
+   if(Math.abs(x-horse002lowx)>(distmap2)){return;}
+   if(Math.abs(y-horse002lowy)>(distmap2)){return;}
+   if(rotavion(horse002lowx-x,horse002lowy-y,horse002lowz-z,2)<=0){return;}
+	if(x2>0){
+       tmovehorse002low=(1+vhorse002low*0.15);//-0.3*Math.cos((dx+dy)*0.1+8*degtorad(o1)))/1.1;
+	   }
+	horse002lowo2=Math.atan(h1-h0)*radtodeg/2;
+	tframehorse002low+=dtime*(tmovehorse002low*0.6+0.3);
+    o2horse002low=0.8*Math.sin(tframehorse002low*0.0065)*tmovehorse002low;
+    o2horse002low+=0.22*(Math.sin(tframehorse002low*0.0016)-0.4);
+    var nvertices=horse00lowVertexPositionBuffer.numItems;
+	if(o2horse002low>0){   
+	 for(var i=0;i<nvertices*3;i++){
+	    horse00lowVertexPositions[i]=horse00lowidleVertexPositions[i]
+		    +o2horse002low*horse00lowrun1VertexPositions[i];}
+    }else{	
+	 for(var i=0;i<nvertices*3;i++){
+	    horse00lowVertexPositions[i]=horse00lowidleVertexPositions[i]
+		    -o2horse002low*horse00lowrun2VertexPositions[i];}
+    }
+	
+	gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D,  horse00Texture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
+		mvPushMatrix();
+		mat4.translate(mvMatrix, [horse002lowx,horse002lowy,horse002lowz+0.1]);
+		mat4.rotate(mvMatrix,degtorad(horse002lowo1+90), [0, 0, 1]);
+    	mat4.rotate(mvMatrix,degtorad(-horse002lowo2-2.5+5.5*o2horse002low), [1, 0, 0]);
+    	mat4.scale(mvMatrix,[0.011,0.011,0.011]);
+    	//mat4.scale(mvMatrix,[0.0087,0.0087,0.0087]);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexTextureCoordBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, horse00lowVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, (horse00lowVertexPositions), gl.STATIC_DRAW);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horse00lowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    
+    colorr=0.82;colorg=0.82;colorb=0.82;colora=1;
+	setMatrixUniforms(); 
+    colorr=1;colorg=1;colorb=1;colora=1;
+    gl.drawArrays(gl.TRIANGLES, 0, horse00lowVertexPositionBuffer.numItems);
+
+	mvPopMatrix();
+}
+var thorse003low=0,o2horse003low=0,o1horse003low=0,o3horse003low=0,tmovehorse003low=1,tframehorse003low=0,vhorse003low=1;
+var horse003lowx=x+8,horse003lowy=y,horse003lowz=0,horse003lowo1=0,horse003lowo2=0;
+var horse003lowo10=0,horse003lowv=2,horse003lowco1=1,horse003lowsi1=0;
+function drawhorse003low(){
+   var dx=horse001lowx-horse003lowx;
+   var dy=horse001lowy-horse003lowy;
+   var dist=Math.sqrt(dx*dx+dy*dy);
+   if(dist>70 && (Math.abs(horse003lowx-x)>45 || Math.abs(horse003lowy-y)>45)){
+               horse003lowx=horse001lowx-50*dx/dist;
+               horse003lowy=horse001lowy-50*dy/dist;}
+   var co1=Math.cos(degtorad(horse003lowo1)),si1=Math.sin(degtorad(horse003lowo1));
+   horse003lowco1=co1;horse003lowsi1=si1;
+   var horse00x0=horse003lowx,horse00y0=horse003lowy,horse00z0=horse003lowz;
+   var h0=getterrainheight(horse003lowx,horse003lowy);
+   horse003lowx+=horse003lowv*co1*dtime*0.0012;
+   horse003lowy+=horse003lowv*si1*dtime*0.0012;
+   var h1=getterrainheight(horse003lowx,horse003lowy);
+   horse003lowz=h1;
+   /*if(h0<-0.3){return;}
+   if(h0>0.001 && h1<-0.001){horse003lowx=horse00x0;
+	                horse003lowy=horse00y0;
+					horse003lowz=horse00z0;  
+	                horse003lowo1+=20+Math.random()*40;
+			       }*/
+   if(Math.random()<0.0002*dtime){
+      horse003lowo10=diro1(dx,dy)+(Math.random()-0.5)*10;}
+   var doo1=horse003lowo10-horse003lowo1;
+   while(horse003lowo1>180){horse003lowo1-=360;}
+   while(horse003lowo1<-180){horse003lowo1+=360;}
+   while(doo1>180){doo1-=360;}
+   while(doo1<-180){doo1+=360;}
+   if(doo1>8){horse003lowo1+=dtime*0.05;}
+   if(doo1<-8){horse003lowo1-=dtime*0.05;}   
+   tmovehorse003low=(1+vhorse003low*0.3);//-0.3*Math.cos((dx+dy)*0.1));
+   if(dist>19){horse003lowv=2.27;}
+   if(dist<4){horse003lowv=1.8;}
+   if(Math.abs(x-horse003lowx)>(distmap2)){return;}
+   if(Math.abs(y-horse003lowy)>(distmap2)){return;}
+   if(rotavion(horse003lowx-x,horse003lowy-y,horse003lowz-z,2)<=0){return;}
+	if(x2>0){
+       tmovehorse003low=(1+vhorse003low*0.15);//-0.3*Math.cos((dx+dy)*0.1+8*degtorad(o1)))/1.1;
+	   }
+	horse003lowo2=Math.atan(h1-h0)*radtodeg/2;
+	tframehorse003low+=dtime*(tmovehorse003low*0.6+0.3);
+    o2horse003low=0.8*Math.sin(tframehorse003low*0.0065)*tmovehorse003low;
+    o2horse003low+=0.22*(Math.sin(tframehorse003low*0.0016)-0.4);
+    var nvertices=horse00lowVertexPositionBuffer.numItems;
+	if(o2horse003low>0){   
+	 for(var i=0;i<nvertices*3;i++){
+	    horse00lowVertexPositions[i]=horse00lowidleVertexPositions[i]
+		    +o2horse003low*horse00lowrun1VertexPositions[i];}
+    }else{	
+	 for(var i=0;i<nvertices*3;i++){
+	    horse00lowVertexPositions[i]=horse00lowidleVertexPositions[i]
+		    -o2horse003low*horse00lowrun2VertexPositions[i];}
+    }
+	
+	gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D,  horse00Texture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
+		mvPushMatrix();
+		mat4.translate(mvMatrix, [horse003lowx,horse003lowy,horse003lowz+0.1]);
+		mat4.rotate(mvMatrix,degtorad(horse003lowo1+90), [0, 0, 1]);
+    	mat4.rotate(mvMatrix,degtorad(-horse003lowo2-2.5+5.5*o2horse003low), [1, 0, 0]);
+    	mat4.scale(mvMatrix,[0.0085,0.0085,0.0085]);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexTextureCoordBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, horse00lowVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, (horse00lowVertexPositions), gl.STATIC_DRAW);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, horse00lowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    
+    colorr=1.4;colorg=1.4;colorb=1;colora=1;
+    setMatrixUniforms(); 
+    colorr=1;colorg=1;colorb=1;colora=1;
+    gl.drawArrays(gl.TRIANGLES, 0, horse00lowVertexPositionBuffer.numItems);
+
+	mvPopMatrix();
+}
 var tbird=0,o2bird=0,o1bird=0,o3bird=0,tmovebird=1,tframebird=0,vbird=0;
 var birdx=x+8,birdy=y,birdz=0,birdo1=0,birdo2=0;
 var birdo10=0,birdv=1,birdco1=1,birdsi1=0;
@@ -8339,7 +8616,7 @@ if(tchat==0){
 
 	  }
 	  var text=document.getElementById('intext0').value;
-	  if(text=="speak=>quit" || text=="speak=>exit"){text="";if(tchat==1){subchat();}}
+	  if(text=="speak=>quit" || text=="speak=>exit"){text="speak=>";if(tchat==1){subchat();}}
 	  if(tfocus){document.getElementById('intext0').value="";}
 	  if(tfocus){document.getElementById('intext0').value=text;}
 	  if(tfocus){document.getElementById('intext0').focus();}}
@@ -9069,6 +9346,14 @@ var womanjeancavVertexPositions = null;
 var womanjeancavidleVertexPositions = null;
 var womanjeancavattackVertexPositions = null;
 
+var horse00lowVertexPositionBuffer = null;
+var horse00lowVertexTextureCoordBuffer = null;
+
+var horse00lowVertexPositions = null;
+var horse00lowidleVertexPositions = null;
+var horse00lowrun1VertexPositions = null;
+var horse00lowrun2VertexPositions = null;
+
   function loadWorld() {
     handleLoadedWorld(c150objtxt);
     worldVertexPositionBuffer = gl.createBuffer();
@@ -9470,6 +9755,36 @@ var womanjeancavattackVertexPositions = null;
 	for(var i=0;i<vertexCount*3;i++){
 	    womanjeancavattackVertexPositions[i]=vertexPositions[i]-womanjeancavVertexPositions[i];}
 		
+
+	handleLoadedWorld(horse00objtxt);
+    horse00lowVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
+    horse00lowVertexPositionBuffer.itemSize = 3;
+    horse00lowVertexPositionBuffer.numItems = vertexCount;
+
+    horse00lowVertexTextureCoordBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, horse00lowVertexTextureCoordBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
+    horse00lowVertexTextureCoordBuffer.itemSize = 2;
+    horse00lowVertexTextureCoordBuffer.numItems = vertexCount;//alert(vertexCount);
+
+    horse00lowVertexPositions=new Float32Array(vertexCount*3);
+    horse00lowidleVertexPositions=new Float32Array(vertexCount*3);
+	for(var i=0;i<vertexCount*3;i++){
+	    horse00lowVertexPositions[i]=vertexPositions[i];
+	    horse00lowidleVertexPositions[i]=vertexPositions[i];}
+
+	handleLoadedWorld(horse01objtxt);
+    horse00lowrun1VertexPositions=new Float32Array(vertexCount*3);
+	for(var i=0;i<vertexCount*3;i++){
+	    horse00lowrun1VertexPositions[i]=vertexPositions[i]-horse00lowVertexPositions[i];}
+
+	handleLoadedWorld(horse02objtxt);
+    horse00lowrun2VertexPositions=new Float32Array(vertexCount*3);
+	for(var i=0;i<vertexCount*3;i++){
+	    horse00lowrun2VertexPositions[i]=vertexPositions[i]-horse00lowVertexPositions[i];}
+	
 	}	
 
 function handleLoadedWorld(data){//,vertexposbuff,vertextextbuff) { 
