@@ -1213,10 +1213,12 @@ void main() {
 	//clearTimeout(timeoutkey);
 	clearTimeout(timeouttick);
 	if(tclose<2){tclose=3;
+	try{
 	closesounds();
 	//return;// "bye bye";
 	deletetextures();
 	deletejsfilelist();
+	}catch(e){};
 	alert("bye !");
 	}
 	}
