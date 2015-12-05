@@ -6714,6 +6714,78 @@ if(thorse==1 && tfoot==1){
 	 y+=cos1*0.1;}}
 }
 }
+function testcollidehorse001low(){
+if(tcollidehorse001low==1){tcollidehorse001low=0;
+   var dt=dtime/2;//timer1-timer0;
+   if(dt>300){dt=300;}
+   if(parseInt(tframe/20000)%2){
+     horse001lowx+=dt*(-horse001lowsi1*0.005-horse001lowco1*0.008);
+	 horse001lowy+=dt*(horse001lowco1*0.005-horse001lowsi1*0.008);
+   }else{	 
+     horse001lowx+=dt*(horse001lowsi1*0.005-horse001lowco1*0.008);
+	 horse001lowy+=dt*(-horse001lowco1*0.005-horse001lowsi1*0.008);
+   }
+}else{  
+  if(Math.abs(horse001lowx+horse001lowco1*0.7-x)<0.3){
+   if(Math.abs(horse001lowy+horse001lowsi1*0.7-y)<0.3){
+     horse001lowx-=horse001lowsi1*0.1;
+	 horse001lowy+=horse001lowco1*0.1;}}
+}
+if(thorse==1 && tfoot==1){
+  if(Math.abs(horse001lowx-cos1*0.7-x)<0.3){
+   if(Math.abs(horse001lowy-sin1*0.7-y)<0.3){
+     x-=sin1*0.1;
+	 y+=cos1*0.1;}}
+}
+}
+function testcollidehorse002low(){
+if(tcollidehorse002low==1){tcollidehorse002low=0;
+   var dt=dtime/2;//timer1-timer0;
+   if(dt>300){dt=300;}
+   if(parseInt(tframe/20000)%2){
+     horse002lowx+=dt*(-horse002lowsi1*0.005-horse002lowco1*0.008);
+	 horse002lowy+=dt*(horse002lowco1*0.005-horse002lowsi1*0.008);
+   }else{	 
+     horse002lowx+=dt*(horse002lowsi1*0.005-horse002lowco1*0.008);
+	 horse002lowy+=dt*(-horse002lowco1*0.005-horse002lowsi1*0.008);
+   }
+}else{  
+  if(Math.abs(horse002lowx+horse002lowco1*0.7-x)<0.3){
+   if(Math.abs(horse002lowy+horse002lowsi1*0.7-y)<0.3){
+     horse002lowx-=horse002lowsi1*0.1;
+	 horse002lowy+=horse002lowco1*0.1;}}
+}
+if(thorse==1 && tfoot==1){
+  if(Math.abs(horse002lowx-cos1*0.7-x)<0.3){
+   if(Math.abs(horse002lowy-sin1*0.7-y)<0.3){
+     x-=sin1*0.1;
+	 y+=cos1*0.1;}}
+}
+}
+function testcollidehorse003low(){
+if(tcollidehorse003low==1){tcollidehorse003low=0;
+   var dt=dtime/2;//timer1-timer0;
+   if(dt>300){dt=300;}
+   if(parseInt(tframe/20000)%2){
+     horse003lowx+=dt*(-horse003lowsi1*0.005-horse003lowco1*0.008);
+	 horse003lowy+=dt*(horse003lowco1*0.005-horse003lowsi1*0.008);
+   }else{	 
+     horse003lowx+=dt*(horse003lowsi1*0.005-horse003lowco1*0.008);
+	 horse003lowy+=dt*(-horse003lowco1*0.005-horse003lowsi1*0.008);
+   }
+}else{  
+  if(Math.abs(horse003lowx+horse003lowco1*0.7-x)<0.3){
+   if(Math.abs(horse003lowy+horse003lowsi1*0.7-y)<0.3){
+     horse003lowx-=horse003lowsi1*0.1;
+	 horse003lowy+=horse003lowco1*0.1;}}
+}
+if(thorse==1 && tfoot==1){
+  if(Math.abs(horse003lowx-cos1*0.7-x)<0.3){
+   if(Math.abs(horse003lowy-sin1*0.7-y)<0.3){
+     x-=sin1*0.1;
+	 y+=cos1*0.1;}}
+}
+}
 var twomanjeancav=parseInt(Math.random()*3);
 function drawbarbarecav(){
 if(twomanjeancav==1){drawwomanjeancav();return;}
@@ -6997,24 +7069,26 @@ var r=r0;if(tcar==1){r*=0.28;}
  if(Math.abs(px-horse001lowx)<r){
   if(Math.abs(py-horse001lowy)<r){
    if(Math.abs(pz-horse001lowz)<r){
-     soundhorse00();return 1;
+     soundhorse();return 1;
  }}}
  if(Math.abs(px-horse002lowx)<r){
   if(Math.abs(py-horse002lowy)<r){
    if(Math.abs(pz-horse002lowz)<r){
-     soundhorse00();return 1;
+     soundhorse();return 1;
  }}}
  if(Math.abs(px-horse003lowx)<r){
   if(Math.abs(py-horse003lowy)<r){
    if(Math.abs(pz-horse003lowz)<r){
-     soundhorse00();return 1;
+     soundhorse();return 1;
  }}}
  return 0;
 }
+var tcollidehorse001low=0,tcollidehorse002low=0,tcollidehorse003low=0;
 var thorse001low=0,o2horse001low=0,o1horse001low=0,o3horse001low=0,tmovehorse001low=1,tframehorse001low=0,vhorse001low=1;
 var horse001lowx=x+8,horse001lowy=y,horse001lowz=0,horse001lowo1=0,horse001lowo2=0;
 var horse001lowo10=0,horse001lowv=2,horse001lowco1=1,horse001lowsi1=0;
 function drawhorse001low(){
+   testcollidehorse001low();
    var distmax=65,test=0;
    while(horse001lowx<(x-distmax)){horse001lowx+=1.99*distmax;test=1;}
    while(horse001lowx>(x+distmax)){horse001lowx-=1.99*distmax;test=1;}
@@ -7095,6 +7169,7 @@ var thorse002low=0,o2horse002low=0,o1horse002low=0,o3horse002low=0,tmovehorse002
 var horse002lowx=x+8,horse002lowy=y,horse002lowz=0,horse002lowo1=0,horse002lowo2=0;
 var horse002lowo10=0,horse002lowv=2,horse002lowco1=1,horse002lowsi1=0;
 function drawhorse002low(){
+   testcollidehorse002low();
    var dx=horse001lowx-horse002lowx;
    var dy=horse001lowy-horse002lowy;
    var dist=Math.sqrt(dx*dx+dy*dy);
@@ -7177,6 +7252,7 @@ var thorse003low=0,o2horse003low=0,o1horse003low=0,o3horse003low=0,tmovehorse003
 var horse003lowx=x+8,horse003lowy=y,horse003lowz=0,horse003lowo1=0,horse003lowo2=0;
 var horse003lowo10=0,horse003lowv=2,horse003lowco1=1,horse003lowsi1=0;
 function drawhorse003low(){
+   testcollidehorse003low();
    var dx=horse001lowx-horse003lowx;
    var dy=horse001lowy-horse003lowy;
    var dist=Math.sqrt(dx*dx+dy*dy);
@@ -7469,6 +7545,15 @@ for(var i=0;i<nroc;i++){
 		if(Math.abs(rocx[i]-horse3lowx-0.5*horse3lowco1)<d){
 		  if (Math.abs(rocy[i]-horse3lowy-0.5*horse3lowsi1)<d){
 		     if(rocz[i]>=0.015){tcollidebarbare2=1;};};} 
+		if(Math.abs(rocx[i]-horse001lowx-0.5*horse001lowco1)<d){
+		  if (Math.abs(rocy[i]-horse001lowy-0.5*horse001lowsi1)<d){
+		     if(rocz[i]>=0.015){tcollidehorse001low=1;};};} 
+		if(Math.abs(rocx[i]-horse002lowx-0.5*horse002lowco1)<d){
+		  if (Math.abs(rocy[i]-horse002lowy-0.5*horse002lowsi1)<d){
+		     if(rocz[i]>=0.015){tcollidehorse002low=1;};};} 
+		if(Math.abs(rocx[i]-horse003lowx-0.5*horse003lowco1)<d){
+		  if (Math.abs(rocy[i]-horse003lowy-0.5*horse003lowsi1)<d){
+		     if(rocz[i]>=0.015){tcollidehorse003low=1;};};} 
 		if(test==1){rocz[i]=getterrainheight(rocx[i],rocy[i]);
 		  if(rocz[i]<0.015 || rocz[i]>20){rocz[i]=-999;};}
           if(Math.abs(townxx-rocx[i])<90){
