@@ -6289,7 +6289,7 @@ function drawaxe(){
 		
 		mvPopMatrix();
 }
-var thorse=0,o2horse=0,o1horse=0,o3horse=0,tmovehorse=1,tframehorse=0,vhorse=0;
+var thorse=0,o2horse=0,o1horse=0,o3horse=0,tmovehorse=1,tframehorse=0,vhorse=0,vhorse2=0;
 var tmovehorse2=0,tmovehorse20=0;
 function drawhorse(){
         tmovehorse20=tmovehorse2;tmovehorse2=0;
@@ -6297,6 +6297,8 @@ function drawhorse(){
         tframehorse+=dtime*(tmovehorse*0.6+0.3);
 		o2horse=Math.sin(tframehorse*0.0065)*4*tmovehorse;
 		o2horse+=Math.sin(tframehorse*0.0016)*3-3;//*tmovehorse;
+		if(keys[vk_up] || joyy<-0.5){vhorse2=0.1;}
+		if(keys[vk_down] || joyy>0.5){o2horse+=7;vhorse2=0;}
 		o1horse=Math.sin(tframehorse*0.0014)*8;
 		o3horse=Math.sin(tframehorse*0.0028)*23*Math.cos(tframe*0.0003);
 		if(o1>o10+0.0001){o3horse-=10;o1horse+=7;tmovehorse2=1;}
@@ -8652,7 +8654,9 @@ if(tskip==0){x0=x;y0=y;z0=z;}
 	 var test=0;
 	 if (keys[37] || joyx<-0.5){test=1;o1+=dt*0.07;if(o1>180){o1-=360;o10-=360;};}
      if (keys[39] || joyx>0.5){test=1;o1-=dt*0.07;if(o1<-180){o1+=360;o10+=360;};}	  
-     if (thorse==1 && vhorse>1){test=0.97;x+=dt*0.002*cos1;y+=dt*0.002*sin1;
+     if (thorse==1 && vhorse>1){test=0.97;
+	     if(vhorse2>0.001){x+=dt*0.00225*cos1;y+=dt*0.00225*sin1;}
+		 else{x+=dt*0.002*cos1;y+=dt*0.002*sin1;}
 	     var dz=getterrainheight(x+cos1,y+sin1);
 		 if((dz>z+1.7*degtorad(o2-o22)) && (o2<o22+10)){o2+=0.030*dt;}
 		 if((dz<z-1.7*degtorad(o2-o22)) && (o2>o22-10)){o2-=0.030*dt;}
