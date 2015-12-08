@@ -314,6 +314,10 @@ addjavascript("horse00jpg.js");
 addjavascript("horse00objtxt.js");
 addjavascript("horse01objtxt.js");
 addjavascript("horse02objtxt.js");
+addjavascript("antilope00jpg.js");
+addjavascript("antilope00objtxt.js");
+addjavascript("antilope01objtxt.js");
+addjavascript("antilope02objtxt.js");
 setTimeout("msgloading();",20000);
 </script>
 <script type="text" id="testaddmain">
@@ -1606,7 +1610,7 @@ void main() {
 	var skeleton1Texture,skeleton1LTexture,skeleton1RTexture;
 	var skeleton2Texture,skeleton2LTexture,skeleton2RTexture;
 	var birdTexture,barbarecavTexture,womanjeancavTexture;
-	var womanjeancav2Texture,horse00Texture;
+	var womanjeancav2Texture,horse00Texture,antilope00Texture;
 	var rttFramebuffer,rttTexture,renderbuffer;
 	var rtt2Framebuffer,rtt2Texture,rtt2renderbuffer;
 	var faceimage;
@@ -1678,6 +1682,7 @@ void main() {
 		gldeleteTexture(womanjeancav2Texture);
 		gldeleteTexture(tree2Texture);
 		gldeleteTexture(horse00Texture);
+		gldeleteTexture(antilope00Texture);
     }
 
     /*function loadtexture(texturename,texturesrc){//$$$
@@ -2265,6 +2270,13 @@ function initTexture2(){
             handleLoadedTexture(horse00Texture)
         }
         horse00Texture.image.src = horse00jpg;
+
+        antilope00Texture = gl.createTexture();
+        antilope00Texture.image = new Image();
+        antilope00Texture.image.onload = function () {
+            handleLoadedTexture(antilope00Texture)
+        }
+        antilope00Texture.image.src = antilope00jpg;
 
 		}
 
@@ -4679,6 +4691,9 @@ var tshadow=0,zsol=0,distshadow=0,sunzz=1000,sunco2=0,sunsi2=1,sunco1=0,sunsi1=1
 		drawhorse001low();
 		drawhorse002low();
 		drawhorse003low();
+		drawantilope001low();
+		drawantilope002low();
+		drawantilope003low();
 		//drawship();
 		//if(tsea>0){drawshipcarrier();drawsailships();}
         gl.useProgram(solProgram);
@@ -6786,6 +6801,78 @@ if(thorse==1 && tfoot==1){
 	 y+=cos1*0.1;}}
 }
 }
+function testcollideantilope001low(){
+if(tcollideantilope001low==1){tcollideantilope001low=0;
+   var dt=dtime/2;//timer1-timer0;
+   if(dt>300){dt=300;}
+   if(parseInt(tframe/20000)%2){
+     antilope001lowx+=dt*(-antilope001lowsi1*0.005-antilope001lowco1*0.008);
+	 antilope001lowy+=dt*(antilope001lowco1*0.005-antilope001lowsi1*0.008);
+   }else{	 
+     antilope001lowx+=dt*(antilope001lowsi1*0.005-antilope001lowco1*0.008);
+	 antilope001lowy+=dt*(-antilope001lowco1*0.005-antilope001lowsi1*0.008);
+   }
+}else{  
+  if(Math.abs(antilope001lowx+antilope001lowco1*0.7-x)<0.3){
+   if(Math.abs(antilope001lowy+antilope001lowsi1*0.7-y)<0.3){
+     antilope001lowx-=antilope001lowsi1*0.1;
+	 antilope001lowy+=antilope001lowco1*0.1;}}
+}
+if(thorse==1 && tfoot==1){
+  if(Math.abs(antilope001lowx-cos1*0.7-x)<0.3){
+   if(Math.abs(antilope001lowy-sin1*0.7-y)<0.3){
+     x-=sin1*0.1;
+	 y+=cos1*0.1;}}
+}
+}
+function testcollideantilope002low(){
+if(tcollideantilope002low==1){tcollideantilope002low=0;
+   var dt=dtime/2;//timer1-timer0;
+   if(dt>300){dt=300;}
+   if(parseInt(tframe/20000)%2){
+     antilope002lowx+=dt*(-antilope002lowsi1*0.005-antilope002lowco1*0.008);
+	 antilope002lowy+=dt*(antilope002lowco1*0.005-antilope002lowsi1*0.008);
+   }else{	 
+     antilope002lowx+=dt*(antilope002lowsi1*0.005-antilope002lowco1*0.008);
+	 antilope002lowy+=dt*(-antilope002lowco1*0.005-antilope002lowsi1*0.008);
+   }
+}else{  
+  if(Math.abs(antilope002lowx+antilope002lowco1*0.7-x)<0.3){
+   if(Math.abs(antilope002lowy+antilope002lowsi1*0.7-y)<0.3){
+     antilope002lowx-=antilope002lowsi1*0.1;
+	 antilope002lowy+=antilope002lowco1*0.1;}}
+}
+if(thorse==1 && tfoot==1){
+  if(Math.abs(antilope002lowx-cos1*0.7-x)<0.3){
+   if(Math.abs(antilope002lowy-sin1*0.7-y)<0.3){
+     x-=sin1*0.1;
+	 y+=cos1*0.1;}}
+}
+}
+function testcollideantilope003low(){
+if(tcollideantilope003low==1){tcollideantilope003low=0;
+   var dt=dtime/2;//timer1-timer0;
+   if(dt>300){dt=300;}
+   if(parseInt(tframe/20000)%2){
+     antilope003lowx+=dt*(-antilope003lowsi1*0.005-antilope003lowco1*0.008);
+	 antilope003lowy+=dt*(antilope003lowco1*0.005-antilope003lowsi1*0.008);
+   }else{	 
+     antilope003lowx+=dt*(antilope003lowsi1*0.005-antilope003lowco1*0.008);
+	 antilope003lowy+=dt*(-antilope003lowco1*0.005-antilope003lowsi1*0.008);
+   }
+}else{  
+  if(Math.abs(antilope003lowx+antilope003lowco1*0.7-x)<0.3){
+   if(Math.abs(antilope003lowy+antilope003lowsi1*0.7-y)<0.3){
+     antilope003lowx-=antilope003lowsi1*0.1;
+	 antilope003lowy+=antilope003lowco1*0.1;}}
+}
+if(thorse==1 && tfoot==1){
+  if(Math.abs(antilope003lowx-cos1*0.7-x)<0.3){
+   if(Math.abs(antilope003lowy-sin1*0.7-y)<0.3){
+     x-=sin1*0.1;
+	 y+=cos1*0.1;}}
+}
+}
 var twomanjeancav=parseInt(Math.random()*3);
 function drawbarbarecav(){
 if(twomanjeancav==1){drawwomanjeancav();return;}
@@ -7330,6 +7417,272 @@ function drawhorse003low(){
 
 	mvPopMatrix();
 }
+function testantilope00(px,py,pz,r0){
+var r=r0;if(tcar==1){r*=0.28;}
+ if(Math.abs(px-antilope001lowx)<r){
+  if(Math.abs(py-antilope001lowy)<r){
+   if(Math.abs(pz-antilope001lowz)<r){
+     soundhorse();return 1;
+ }}}
+ if(Math.abs(px-antilope002lowx)<r){
+  if(Math.abs(py-antilope002lowy)<r){
+   if(Math.abs(pz-antilope002lowz)<r){
+     soundhorse();return 1;
+ }}}
+ if(Math.abs(px-antilope003lowx)<r){
+  if(Math.abs(py-antilope003lowy)<r){
+   if(Math.abs(pz-antilope003lowz)<r){
+     soundhorse();return 1;
+ }}}
+ return 0;
+}
+var tcollideantilope001low=0,tcollideantilope002low=0,tcollideantilope003low=0;
+var tantilope001low=0,o2antilope001low=0,o1antilope001low=0,o3antilope001low=0,tmoveantilope001low=1,tframeantilope001low=0,vantilope001low=1;
+var antilope001lowx=x+8,antilope001lowy=y,antilope001lowz=0,antilope001lowo1=0,antilope001lowo2=0;
+var antilope001lowo10=0,antilope001lowv=2,antilope001lowco1=1,antilope001lowsi1=0;
+function drawantilope001low(){
+   testcollideantilope001low();
+   var distmax=65,test=0;
+   while(antilope001lowx<(x-distmax)){antilope001lowx+=1.99*distmax;test=1;}
+   while(antilope001lowx>(x+distmax)){antilope001lowx-=1.99*distmax;test=1;}
+   while(antilope001lowy<(y-distmax)){antilope001lowy+=1.99*distmax;test=1;}
+   while(antilope001lowy>(y+distmax)){antilope001lowy-=1.99*distmax;test=1;}
+   var co1=Math.cos(degtorad(antilope001lowo1)),si1=Math.sin(degtorad(antilope001lowo1));
+   antilope001lowco1=co1;antilope001lowsi1=si1;
+   var antilope00x0=antilope001lowx,antilope00y0=antilope001lowy,antilope00z0=antilope001lowz;
+   var h0=getterrainheight(antilope001lowx,antilope001lowy);
+   antilope001lowx+=antilope001lowv*co1*dtime*0.0012;
+   antilope001lowy+=antilope001lowv*si1*dtime*0.0012;
+   var h1=getterrainheight(antilope001lowx,antilope001lowy);
+   antilope001lowz=h1;
+   //if(h0<-0.3){return;}
+   if(h0>-0.20 && h1<-0.30){//water
+    if(getterrainheight(antilope001lowx+20*co1,antilope001lowy+20*si1)<-0.30){
+                    antilope001lowx=antilope00x0;
+	                antilope001lowy=antilope00y0;
+					antilope001lowz=antilope00z0;  
+	                antilope001lowo1+=20+Math.random()*40;
+			       }}
+   if(Math.random()<0.0001*dtime){
+        antilope001lowo10+=(Math.random()-0.5)*100;}
+   var doo1=antilope001lowo10-antilope001lowo1;
+   while(antilope001lowo1>180){antilope001lowo1-=360;}
+   while(antilope001lowo1<-180){antilope001lowo1+=360;}
+   while(doo1>180){doo1-=360;}
+   while(doo1<-180){doo1+=360;}
+   if(doo1>8){antilope001lowo1+=dtime*0.05;}
+   if(doo1<-8){antilope001lowo1-=dtime*0.05;}   
+   tmoveantilope001low=(1+vantilope001low*0.3);//-0.3*Math.cos((dx+dy)*0.1));
+   antilope001lowv=1.8;
+   if(Math.abs(x-antilope001lowx)>(distmap2)){return;}
+     if(Math.abs(y-antilope001lowy)>(distmap2)){return;}
+   if(rotavion(antilope001lowx-x,antilope001lowy-y,antilope001lowz-z,2)<=0){return;}
+	if(x2>0){
+       tmoveantilope001low=(1+vantilope001low*0.15);//-0.3*Math.cos((dx+dy)*0.1+8*degtorad(o1)))/1.1;
+	   }
+	antilope001lowo2=Math.atan(h1-h0)*radtodeg/2;
+	tframeantilope001low+=dtime*(tmoveantilope001low*0.6+0.3);
+    o2antilope001low=0.8*Math.sin(tframeantilope001low*0.0065)*tmoveantilope001low;
+    o2antilope001low+=0.22*(Math.sin(tframeantilope001low*0.0016)-0.4);
+    var nvertices=antilope00lowVertexPositionBuffer.numItems;
+	if(o2antilope001low>0){   
+	 for(var i=0;i<nvertices*3;i++){
+	    antilope00lowVertexPositions[i]=antilope00lowidleVertexPositions[i]
+		    +o2antilope001low*antilope00lowrun1VertexPositions[i];}
+    }else{	
+	 for(var i=0;i<nvertices*3;i++){
+	    antilope00lowVertexPositions[i]=antilope00lowidleVertexPositions[i]
+		    -o2antilope001low*antilope00lowrun2VertexPositions[i];}
+    }
+	
+	gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D,  antilope00Texture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
+		mvPushMatrix();
+		mat4.translate(mvMatrix, [antilope001lowx,antilope001lowy,antilope001lowz+0.1]);
+		mat4.rotate(mvMatrix,degtorad(antilope001lowo1+90), [0, 0, 1]);
+    	mat4.rotate(mvMatrix,degtorad(-antilope001lowo2-2.5+5.5*o2antilope001low), [1, 0, 0]);
+    	mat4.scale(mvMatrix,[0.0125,0.0125,0.0125]);
+    	//mat4.scale(mvMatrix,[0.0087,0.0087,0.0087]);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexTextureCoordBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, antilope00lowVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, (antilope00lowVertexPositions), gl.STATIC_DRAW);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, antilope00lowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    
+    setMatrixUniforms(); 
+    gl.drawArrays(gl.TRIANGLES, 0, antilope00lowVertexPositionBuffer.numItems);
+
+	mvPopMatrix();
+}
+var tantilope002low=0,o2antilope002low=0,o1antilope002low=0,o3antilope002low=0,tmoveantilope002low=1,tframeantilope002low=0,vantilope002low=1;
+var antilope002lowx=x+8,antilope002lowy=y,antilope002lowz=0,antilope002lowo1=0,antilope002lowo2=0;
+var antilope002lowo10=0,antilope002lowv=2,antilope002lowco1=1,antilope002lowsi1=0;
+function drawantilope002low(){
+   testcollideantilope002low();
+   var dx=antilope001lowx-antilope002lowx;
+   var dy=antilope001lowy-antilope002lowy;
+   var dist=Math.sqrt(dx*dx+dy*dy);
+   if(dist>70 && (Math.abs(antilope002lowx-x)>45 || Math.abs(antilope002lowy-y)>45)){
+               antilope002lowx=antilope001lowx-50*dx/dist;
+               antilope002lowy=antilope001lowy-50*dy/dist;}
+   var co1=Math.cos(degtorad(antilope002lowo1)),si1=Math.sin(degtorad(antilope002lowo1));
+   antilope002lowco1=co1;antilope002lowsi1=si1;
+   var antilope00x0=antilope002lowx,antilope00y0=antilope002lowy,antilope00z0=antilope002lowz;
+   var h0=getterrainheight(antilope002lowx,antilope002lowy);
+   antilope002lowx+=antilope002lowv*co1*dtime*0.0012;
+   antilope002lowy+=antilope002lowv*si1*dtime*0.0012;
+   var h1=getterrainheight(antilope002lowx,antilope002lowy);
+   antilope002lowz=h1;
+   /*if(h0<-0.3){return;}
+   if(h0>0.001 && h1<-0.001){antilope002lowx=antilope00x0;
+	                antilope002lowy=antilope00y0;
+					antilope002lowz=antilope00z0;  
+	                antilope002lowo1+=20+Math.random()*40;
+			       }*/
+   if(Math.random()<0.0002*dtime){
+      antilope002lowo10=diro1(dx,dy)+(Math.random()-0.5)*10;}
+   var doo1=antilope002lowo10-antilope002lowo1;
+   while(antilope002lowo1>180){antilope002lowo1-=360;}
+   while(antilope002lowo1<-180){antilope002lowo1+=360;}
+   while(doo1>180){doo1-=360;}
+   while(doo1<-180){doo1+=360;}
+   if(doo1>8){antilope002lowo1+=dtime*0.05;}
+   if(doo1<-8){antilope002lowo1-=dtime*0.05;}   
+   tmoveantilope002low=(1+vantilope002low*0.3);//-0.3*Math.cos((dx+dy)*0.1));
+   if(dist>15){antilope002lowv=2.25;}
+   if(dist<5){antilope002lowv=1.8;}
+   if(Math.abs(x-antilope002lowx)>(distmap2)){return;}
+   if(Math.abs(y-antilope002lowy)>(distmap2)){return;}
+   if(rotavion(antilope002lowx-x,antilope002lowy-y,antilope002lowz-z,2)<=0){return;}
+	if(x2>0){
+       tmoveantilope002low=(1+vantilope002low*0.15);//-0.3*Math.cos((dx+dy)*0.1+8*degtorad(o1)))/1.1;
+	   }
+	antilope002lowo2=Math.atan(h1-h0)*radtodeg/2;
+	tframeantilope002low+=dtime*(tmoveantilope002low*0.6+0.3);
+    o2antilope002low=0.8*Math.sin(tframeantilope002low*0.0065)*tmoveantilope002low;
+    o2antilope002low+=0.22*(Math.sin(tframeantilope002low*0.0016)-0.4);
+    var nvertices=antilope00lowVertexPositionBuffer.numItems;
+	if(o2antilope002low>0){   
+	 for(var i=0;i<nvertices*3;i++){
+	    antilope00lowVertexPositions[i]=antilope00lowidleVertexPositions[i]
+		    +o2antilope002low*antilope00lowrun1VertexPositions[i];}
+    }else{	
+	 for(var i=0;i<nvertices*3;i++){
+	    antilope00lowVertexPositions[i]=antilope00lowidleVertexPositions[i]
+		    -o2antilope002low*antilope00lowrun2VertexPositions[i];}
+    }
+	
+	gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D,  antilope00Texture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
+		mvPushMatrix();
+		mat4.translate(mvMatrix, [antilope002lowx,antilope002lowy,antilope002lowz+0.1]);
+		mat4.rotate(mvMatrix,degtorad(antilope002lowo1+90), [0, 0, 1]);
+    	mat4.rotate(mvMatrix,degtorad(-antilope002lowo2-2.5+5.5*o2antilope002low), [1, 0, 0]);
+    	mat4.scale(mvMatrix,[0.011,0.011,0.011]);
+    	//mat4.scale(mvMatrix,[0.0087,0.0087,0.0087]);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexTextureCoordBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, antilope00lowVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, (antilope00lowVertexPositions), gl.STATIC_DRAW);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, antilope00lowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    
+    colorr=0.82;colorg=0.82;colorb=0.82;colora=1;
+	setMatrixUniforms(); 
+    colorr=1;colorg=1;colorb=1;colora=1;
+    gl.drawArrays(gl.TRIANGLES, 0, antilope00lowVertexPositionBuffer.numItems);
+
+	mvPopMatrix();
+}
+var tantilope003low=0,o2antilope003low=0,o1antilope003low=0,o3antilope003low=0,tmoveantilope003low=1,tframeantilope003low=0,vantilope003low=1;
+var antilope003lowx=x+8,antilope003lowy=y,antilope003lowz=0,antilope003lowo1=0,antilope003lowo2=0;
+var antilope003lowo10=0,antilope003lowv=2,antilope003lowco1=1,antilope003lowsi1=0;
+function drawantilope003low(){
+   testcollideantilope003low();
+   var dx=antilope001lowx-antilope003lowx;
+   var dy=antilope001lowy-antilope003lowy;
+   var dist=Math.sqrt(dx*dx+dy*dy);
+   if(dist>70 && (Math.abs(antilope003lowx-x)>45 || Math.abs(antilope003lowy-y)>45)){
+               antilope003lowx=antilope001lowx-50*dx/dist;
+               antilope003lowy=antilope001lowy-50*dy/dist;}
+   var co1=Math.cos(degtorad(antilope003lowo1)),si1=Math.sin(degtorad(antilope003lowo1));
+   antilope003lowco1=co1;antilope003lowsi1=si1;
+   var antilope00x0=antilope003lowx,antilope00y0=antilope003lowy,antilope00z0=antilope003lowz;
+   var h0=getterrainheight(antilope003lowx,antilope003lowy);
+   antilope003lowx+=antilope003lowv*co1*dtime*0.0012;
+   antilope003lowy+=antilope003lowv*si1*dtime*0.0012;
+   var h1=getterrainheight(antilope003lowx,antilope003lowy);
+   antilope003lowz=h1;
+   /*if(h0<-0.3){return;}
+   if(h0>0.001 && h1<-0.001){antilope003lowx=antilope00x0;
+	                antilope003lowy=antilope00y0;
+					antilope003lowz=antilope00z0;  
+	                antilope003lowo1+=20+Math.random()*40;
+			       }*/
+   if(Math.random()<0.0002*dtime){
+      antilope003lowo10=diro1(dx,dy)+(Math.random()-0.5)*10;}
+   var doo1=antilope003lowo10-antilope003lowo1;
+   while(antilope003lowo1>180){antilope003lowo1-=360;}
+   while(antilope003lowo1<-180){antilope003lowo1+=360;}
+   while(doo1>180){doo1-=360;}
+   while(doo1<-180){doo1+=360;}
+   if(doo1>8){antilope003lowo1+=dtime*0.05;}
+   if(doo1<-8){antilope003lowo1-=dtime*0.05;}   
+   tmoveantilope003low=(1+vantilope003low*0.3);//-0.3*Math.cos((dx+dy)*0.1));
+   if(dist>19){antilope003lowv=2.27;}
+   if(dist<4){antilope003lowv=1.8;}
+   if(Math.abs(x-antilope003lowx)>(distmap2)){return;}
+   if(Math.abs(y-antilope003lowy)>(distmap2)){return;}
+   if(rotavion(antilope003lowx-x,antilope003lowy-y,antilope003lowz-z,2)<=0){return;}
+	if(x2>0){
+       tmoveantilope003low=(1+vantilope003low*0.15);//-0.3*Math.cos((dx+dy)*0.1+8*degtorad(o1)))/1.1;
+	   }
+	antilope003lowo2=Math.atan(h1-h0)*radtodeg/2;
+	tframeantilope003low+=dtime*(tmoveantilope003low*0.6+0.3);
+    o2antilope003low=0.8*Math.sin(tframeantilope003low*0.0065)*tmoveantilope003low;
+    o2antilope003low+=0.22*(Math.sin(tframeantilope003low*0.0016)-0.4);
+    var nvertices=antilope00lowVertexPositionBuffer.numItems;
+	if(o2antilope003low>0){   
+	 for(var i=0;i<nvertices*3;i++){
+	    antilope00lowVertexPositions[i]=antilope00lowidleVertexPositions[i]
+		    +o2antilope003low*antilope00lowrun1VertexPositions[i];}
+    }else{	
+	 for(var i=0;i<nvertices*3;i++){
+	    antilope00lowVertexPositions[i]=antilope00lowidleVertexPositions[i]
+		    -o2antilope003low*antilope00lowrun2VertexPositions[i];}
+    }
+	
+	gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D,  antilope00Texture);
+    gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
+		mvPushMatrix();
+		mat4.translate(mvMatrix, [antilope003lowx,antilope003lowy,antilope003lowz+0.1]);
+		mat4.rotate(mvMatrix,degtorad(antilope003lowo1+90), [0, 0, 1]);
+    	mat4.rotate(mvMatrix,degtorad(-antilope003lowo2-2.5+5.5*o2antilope003low), [1, 0, 0]);
+    	mat4.scale(mvMatrix,[0.0085,0.0085,0.0085]);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexTextureCoordBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, antilope00lowVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, (antilope00lowVertexPositions), gl.STATIC_DRAW);
+    gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, antilope00lowVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    
+    colorr=1.4;colorg=1.4;colorb=1;colora=1;
+    setMatrixUniforms(); 
+    colorr=1;colorg=1;colorb=1;colora=1;
+    gl.drawArrays(gl.TRIANGLES, 0, antilope00lowVertexPositionBuffer.numItems);
+
+	mvPopMatrix();
+}
 var tbird=0,o2bird=0,o1bird=0,o3bird=0,tmovebird=1,tframebird=0,vbird=0;
 var birdx=x+8,birdy=y,birdz=0,birdo1=0,birdo2=0;
 var birdo10=0,birdv=1,birdco1=1,birdsi1=0;
@@ -7554,6 +7907,15 @@ for(var i=0;i<nroc;i++){
 		if(Math.abs(rocx[i]-horse003lowx-0.5*horse003lowco1)<d){
 		  if (Math.abs(rocy[i]-horse003lowy-0.5*horse003lowsi1)<d){
 		     if(rocz[i]>=0.015){tcollidehorse003low=1;};};} 
+		if(Math.abs(rocx[i]-antilope001lowx-0.5*antilope001lowco1)<d){
+		  if (Math.abs(rocy[i]-antilope001lowy-0.5*antilope001lowsi1)<d){
+		     if(rocz[i]>=0.015){tcollideantilope001low=1;};};} 
+		if(Math.abs(rocx[i]-antilope002lowx-0.5*antilope002lowco1)<d){
+		  if (Math.abs(rocy[i]-antilope002lowy-0.5*antilope002lowsi1)<d){
+		     if(rocz[i]>=0.015){tcollideantilope002low=1;};};} 
+		if(Math.abs(rocx[i]-antilope003lowx-0.5*antilope003lowco1)<d){
+		  if (Math.abs(rocy[i]-antilope003lowy-0.5*antilope003lowsi1)<d){
+		     if(rocz[i]>=0.015){tcollideantilope003low=1;};};} 
 		if(test==1){rocz[i]=getterrainheight(rocx[i],rocy[i]);
 		  if(rocz[i]<0.015 || rocz[i]>20){rocz[i]=-999;};}
           if(Math.abs(townxx-rocx[i])<90){
@@ -9443,6 +9805,14 @@ var horse00lowidleVertexPositions = null;
 var horse00lowrun1VertexPositions = null;
 var horse00lowrun2VertexPositions = null;
 
+var antilope00lowVertexPositionBuffer = null;
+var antilope00lowVertexTextureCoordBuffer = null;
+
+var antilope00lowVertexPositions = null;
+var antilope00lowidleVertexPositions = null;
+var antilope00lowrun1VertexPositions = null;
+var antilope00lowrun2VertexPositions = null;
+
   function loadWorld() {
     handleLoadedWorld(c150objtxt);
     worldVertexPositionBuffer = gl.createBuffer();
@@ -9873,6 +10243,35 @@ var horse00lowrun2VertexPositions = null;
     horse00lowrun2VertexPositions=new Float32Array(vertexCount*3);
 	for(var i=0;i<vertexCount*3;i++){
 	    horse00lowrun2VertexPositions[i]=vertexPositions[i]-horse00lowVertexPositions[i];}
+	
+	handleLoadedWorld(antilope00objtxt);
+    antilope00lowVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexPositionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositions), gl.STATIC_DRAW);
+    antilope00lowVertexPositionBuffer.itemSize = 3;
+    antilope00lowVertexPositionBuffer.numItems = vertexCount;
+
+    antilope00lowVertexTextureCoordBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, antilope00lowVertexTextureCoordBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoords), gl.STATIC_DRAW);
+    antilope00lowVertexTextureCoordBuffer.itemSize = 2;
+    antilope00lowVertexTextureCoordBuffer.numItems = vertexCount;//alert(vertexCount);
+
+    antilope00lowVertexPositions=new Float32Array(vertexCount*3);
+    antilope00lowidleVertexPositions=new Float32Array(vertexCount*3);
+	for(var i=0;i<vertexCount*3;i++){
+	    antilope00lowVertexPositions[i]=vertexPositions[i];
+	    antilope00lowidleVertexPositions[i]=vertexPositions[i];}
+
+	handleLoadedWorld(antilope01objtxt);
+    antilope00lowrun1VertexPositions=new Float32Array(vertexCount*3);
+	for(var i=0;i<vertexCount*3;i++){
+	    antilope00lowrun1VertexPositions[i]=vertexPositions[i]-antilope00lowVertexPositions[i];}
+
+	handleLoadedWorld(antilope02objtxt);
+    antilope00lowrun2VertexPositions=new Float32Array(vertexCount*3);
+	for(var i=0;i<vertexCount*3;i++){
+	    antilope00lowrun2VertexPositions[i]=vertexPositions[i]-antilope00lowVertexPositions[i];}
 	
 	}	
 
