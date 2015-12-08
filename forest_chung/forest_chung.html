@@ -2427,8 +2427,8 @@ function initTexture2(){
 		  gl.uniform1f(treeProgram.cos1Uniform,tcos1*h);
           gl.uniform1f(treeProgram.sin1Uniform,tsin1*h);
 		}
-		gl.uniform1f(treeProgram.windxUniform,uwinddx/4.5);
-        gl.uniform1f(treeProgram.windyUniform,uwinddy/4.5);
+		gl.uniform1f(treeProgram.windxUniform,uwinddx*h/3.8);//4.5
+        gl.uniform1f(treeProgram.windyUniform,uwinddy*h/3.8);
 		gl.uniformMatrix4fv(treeProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(treeProgram.mvMatrixUniform, false, mvMatrix);
 		gl.uniform1i(treeProgram.alphatestUniform,0);
@@ -2444,8 +2444,8 @@ function initTexture2(){
 		  gl.uniform1f(treeProgram.cos1Uniform,tcos1*sc);
           gl.uniform1f(treeProgram.sin1Uniform,tsin1*sc);
 		}
-		gl.uniform1f(treeProgram.windxUniform,uwinddx);
-        gl.uniform1f(treeProgram.windyUniform,uwinddy);
+		gl.uniform1f(treeProgram.windxUniform,uwinddx*grasstype);
+        gl.uniform1f(treeProgram.windyUniform,uwinddy*grasstype);
 		gl.uniformMatrix4fv(treeProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(treeProgram.mvMatrixUniform, false, mvMatrix);
 		gl.uniform1i(treeProgram.alphatestUniform,0);
@@ -8201,8 +8201,8 @@ function drawgrass(){
     gl.bindBuffer(gl.ARRAY_BUFFER, grassVertexPositionBuffer);
     gl.vertexAttribPointer(treeProgram.vertexPositionAttribute, grassVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
     
-    if(Math.random()<dtime*0.002){uwinddx=(Math.random()-0.5)*0.008;
-	                              uwinddy=(Math.random()-0.5)*0.008;}
+    if(Math.random()<dtime*0.002){uwinddx=(Math.random()-0.5)*0.0365;//0.008;
+	                              uwinddy=(Math.random()-0.5)*0.0365;}//0.008;}
 	setMatrixUniformsgrass(); 
     gl_drawArrays(gl.TRIANGLES, 0, grassVertexPositionBuffer.numItems);
 		
