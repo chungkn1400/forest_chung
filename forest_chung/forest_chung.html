@@ -334,7 +334,7 @@ addmain();
 //requestAnimFrame(tick00);
 </script>
 <script type="text" id="main0">
-var weatherurl="http://api.openweathermap.org/data/2.5/weather?lat=48&lon=2";
+var weatherurl="http://api.openweathermap.org/data/2.5/weather?lat=48&lon=2"+"&APPID=4cd1de75fbc57d92794e74ec918593ca";
 var wclouds=20;
 var xmlhttp;
 function createCORSRequest(method, url) {
@@ -375,7 +375,7 @@ function getweather(responseText){
 }	
 //weatherurl="http://query.yahooapis.com/v1/public/yql?q=select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='"+city+"')&format=json";
 //httpGet("http://api.hostip.info/get_json.php?position=true",getlatlong);
-weatherurl="http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng;
+weatherurl="http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&APPID=4cd1de75fbc57d92794e74ec918593ca";
 //weatherurl=folder+"vk_keys.js";
 //weatherurl="http://weather.yahooapis.com/forecastrss?w=2502265";
 try{
@@ -2325,7 +2325,19 @@ function initTexture2(){
     var pMatrix = mat4.create();
     var camx=0,camy=0,camz=0;
 
-    function mvPushMatrix() {
+    var mymvMatrixstack=[],nmatrixstack=30,imatrixstack=0;
+	for(var i=0;i<=nmatrixstack;i++){mymvMatrixstack[i]=mat4.create();}
+	function mvPushMatrix() {
+	   mat4.set(mvMatrix,mymvMatrixstack[imatrixstack]);
+	   imatrixstack+=1;if(imatrixstack>nmatrixstack){imatrixstack=0;}
+	}
+	
+	function mvPopMatrix() {
+	   imatrixstack-=1;if(imatrixstack<0){imatrixstack=nmatrixstack;}
+	   mat4.set(mymvMatrixstack[imatrixstack],mvMatrix);
+	}
+	
+    /*function mvPushMatrix() {
         var copy = mat4.create();
         mat4.set(mvMatrix, copy);
         mvMatrixStack.push(copy);
@@ -2336,7 +2348,7 @@ function initTexture2(){
             throw "Invalid popMatrix!";
         }
         mvMatrix = mvMatrixStack.pop();
-    }
+    }*/
 
 
     function setMatrixUniformssol() {
